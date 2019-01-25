@@ -102,12 +102,10 @@ class Action {
 			break;
 		}
 	}
-	
+
 	//Rewrite the Accounts.bin (update database)
 	private static void toDataBase(BankAcc bankAcc) {
-		ObjectOutputStream ow;
-		try {
-			ow = new ObjectOutputStream(new FileOutputStream("Accounts.bin"));
+		try (ObjectOutputStream ow = new ObjectOutputStream(new FileOutputStream("Accounts.bin"))) {
 			ow.writeObject(bankAcc);
 		} catch(FileNotFoundException e) {
 			System.out.println("File not found");
